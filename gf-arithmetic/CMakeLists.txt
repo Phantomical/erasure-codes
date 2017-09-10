@@ -4,7 +4,6 @@ file(GLOB sources
 	*.h
 )
 
-
 if (WIN32)
 	set (FLAG_TYPE "Windows")
 else()
