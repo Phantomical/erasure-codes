@@ -3,10 +3,13 @@
 
 #include "symbol.h"
 
+#include <cstddef>
 #include <cassert>
 
 namespace gfarith
 {
+	using std::size_t;
+
 	class matrix_row
 	{
 	private:
