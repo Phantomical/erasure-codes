@@ -6,6 +6,8 @@ enable_testing()
 
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
+set(CMAKE_CXX_STANDARD 11)
+
 add_subdirectory(gf-arithmetic)
 add_subdirectory(erasure-codes)
 add_subdirectory(lohi-generator)
