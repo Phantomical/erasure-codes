@@ -4,19 +4,11 @@ file(GLOB sources
 	*.h
 )
 
-# Figure out what format flags must be in
-if (MINGW OR CYGWIN OR CMAKE_COMPILER_IS_GNUCXX OR CMAKE_COMPILER_IS_CLANG OR LINUX)
-	set(FLAG_TYPE "Linux")
-elseif(MSVC)
-	set(FLAG_TYPE "Windows")
-elseif(CMAKE_CXX_COMPILER_ID STREQUAL "Intel")
-	if (WIN32)
-		set (FLAG_TYPE "Windows")
-	else()
-		set (FLAG_TYPE "Linux")
-	endif()
+
+if (WIN32)
+	set (FLAG_TYPE "Windows")
 else()
-	set (FLAG_TYPE "Unknown")
+	set (FLAG_TYPE "Linux")
 endif()
 
 if (FLAG_TYPE STREQUAL "Linux")
