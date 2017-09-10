@@ -21,7 +21,7 @@ matrix vandermonde(size_t n, size_t k)
 	return m;
 }
 
-constexpr size_t sizes[] = { 1, 3, 4, 5, 9, 129, 255 };
+constexpr size_t sizes[] = { 1, 3, 4, 5, 9, 129, 243 };
 
 TEST_CASE("identity inverse", "[matrix]")
 {
