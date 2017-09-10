@@ -21,6 +21,11 @@ void generate_data(unsigned seed = 5489u)
 	}
 }
 
+size_t div_roundup(size_t a, size_t b)
+{
+	return (a + b - 1) / b;
+}
+
 void generate_ptrs()
 {
 	size_t i, j;
@@ -33,9 +38,10 @@ void generate_ptrs()
 		ptrs[i] = parity + data_size * j;
 	}
 
+	size_t rep = div_roundup(n, n - k);
 	for (size_t m = 0; m < n; ++m)
 	{
-		present[m] = (m % 5) != 0;
+		present[m] = (m % rep) != 0;
 	}
 }
 
