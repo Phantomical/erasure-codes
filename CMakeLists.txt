@@ -16,3 +16,6 @@ add_subdirectory(log-table-generator)
 # Testing
 add_subdirectory(erasure-tests)
 add_subdirectory(gf-arith-tests)
+
+# v2
+add_subdirectory(liberasure)
