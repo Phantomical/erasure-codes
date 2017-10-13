@@ -75,6 +75,38 @@ enum erasure_error_code erasure_recover_data(
 typedef struct erasure_encode_stream_ erasure_encode_stream;
 typedef struct erasure_recover_stream_ erasure_recover_stream;
 
+/* Creates an encoding stream using the given
+   encoder and a boolean array indicating which
+   parity shards to encode. The size of 
+   should_encode is determined by the encoder
+   and is equal to the number of parity shards.
+
+   This function returns null if any of the 
+   arguments are null.
+*/
+erasure_encode_stream* erasure_create_encode_stream(
+	erasure_encoder* encoder,
+	const erasure_bool* should_encode,
+	size_t block_size);
+
+/* Creates a recovery stream using the given
+   encoder and a boolean array specifying which
+   shards are missing. This size of the present
+   array is determined by the encoder and is 
+   equal to the total number of shards.
+   
+   This function returns null if any argument is
+   null or if it is impossible to recover the stream
+   with the number of missing shards. 
+*/
+erasure_recover_stream* erasure_create_recover_stream(
+	erasure_encoder* encoder,
+	const erasure_bool* present,
+	size_t block_size);
+
+void erasure_destroy_encode_stream(erasure_encode_stream* stream);
+void erasure_destroy_recover_stream(erasure_recover_stream* stream);
+
 /* Encodes parity shards in fixed blocks using an
    encoder embedded within the stream. Which parity
    shards to encode and block size is determined
