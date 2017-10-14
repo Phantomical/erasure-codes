@@ -11,6 +11,23 @@ struct matrix
 	size_t cols;
 };
 
+struct matrix matrix_create(
+	uint8_t* data,
+	size_t rows,
+	size_t cols);
+void matrix_destroy(struct matrix m);
+
+/* Creates the identity matrix I_n where n
+   is the side length of the matrix.
+*/
+struct matrix matrix_create_identity(size_t side_len);
+
+/* Creates a zero matrix of size rows x cols
+*/
+struct matrix matrix_create_zero(
+	size_t rows,
+	size_t cols);
+
 /* Multiplies two matrices to create the 
    resulting matrix ab. If the number of
    rows in a is not equal to the number
@@ -18,8 +35,8 @@ struct matrix
    matrix.
 */
 struct matrix matrix_mul(
-	struct matrix a,
-	struct matrix b);
+	const struct matrix a,
+	const struct matrix b);
 
 /* Determines the inverse matrix m^(-1) of
    the matrix m. If m is singular then it 
@@ -35,7 +52,7 @@ bool matrix_inverse(
    an empty matrix.
 */
 struct matrix matrix_augment(
-	struct matrix a,
-	struct matrix b);
+	const struct matrix a,
+	const struct matrix b);
 
 #endif
