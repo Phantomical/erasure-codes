@@ -6,7 +6,13 @@ enable_testing()
 
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_C_STANDARD 99)
+
+
+include(CheckSymbolExists)
+
+check_symbol_exists(alloca "intrin.h;stdlib.h" ALLOCA_EXISTS)
+check_symbol_exists(alloca "assert.h;stdlib.h" ALLOCA_EXISTS)
 
 add_subdirectory(gf-arithmetic)
 add_subdirectory(erasure-codes)
@@ -16,6 +22,8 @@ add_subdirectory(log-table-generator)
 # Testing
 add_subdirectory(erasure-tests)
 add_subdirectory(gf-arith-tests)
+
+
 
 # v2
 add_subdirectory(liberasure)

@@ -6,8 +6,8 @@
 #include <string.h>
 #include <assert.h>
 
-#define elem_at(m, i, j) (m.data[i * m.cols + j])
-#define is_empty(m) (!m.data || m.rows == 0 || m.cols == 0)
+#define elem_at(m, i, j) ((m).data[i * (m).cols + j])
+#define is_empty(m) (!(m).data || (m).rows == 0 || (m).cols == 0)
 #define empty_matrix matrix_create(NULL, 0, 0)
 
 void memswap(void* a_, void* b_, size_t size)

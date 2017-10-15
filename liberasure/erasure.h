@@ -1,10 +1,18 @@
-#ifndef LIBERASURE_
+#ifndef LIBERASURE_H
 #define LIBERASURE_H
 
 #include <stdlib.h>
 #include <stdint.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+#ifndef ERASURE_USE_STDBOOL
+typedef _Bool erasure_bool;
+#else
 typedef char erasure_bool;
+#endif
 
 enum erasure_error_code
 {
@@ -63,13 +71,26 @@ enum erasure_error_code erasure_encode_partial(
    if any argument is null, or any shard is null.
 
    This function will return ERASURE_RECOVER_FAILED
-   if it is unable to recover data.
+   if it is unable to recover data. (Which occurs
+   when erasure_can_recover_data returns false)
 */
 enum erasure_error_code erasure_recover_data(
 	erasure_encoder* encoder,
 	uint8_t* const* shards,
 	const erasure_bool* present,
 	size_t shard_size);
+
+/* Checks whether data can be recovered with the
+   amount of missing shards. The size of the 
+   present array is determined by the encoder
+   should be equal to the number of shards.
+
+   This function will always return false if 
+   encoder or present are null.
+*/
+erasure_bool erasure_can_recover_data(
+	erasure_encoder* encoder,
+	const erasure_bool* present);
 
 /* STREAM API */
 typedef struct erasure_encode_stream_ erasure_encode_stream;
@@ -147,5 +168,9 @@ enum erasure_error_code erasure_stream_encode(
 enum erasure_error_code erasure_stream_recover_data(
 	erasure_recover_stream* stream,
 	uint8_t* const* shards);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif

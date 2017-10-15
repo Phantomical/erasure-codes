@@ -6,8 +6,9 @@
 struct erasure_encoder_
 {
 	uint8_t* coding_matrix;
-	size_t n_data;
-	size_t n_shards;
+	size_t num_data;
+	size_t num_shards;
+	size_t shards_required_for_recovery;
 };
 
 #endif
