@@ -1,0 +1,23 @@
+
+#cmakedefine ERASURE_USE_ALLOCA
+#cmakedefine ALLOCA_IN_ALLOCA_H
+#cmakedefine ALLOCA_IN_INTRIN_H
+#cmakedefine ALLOCA_IN_STDLIB_H
+
+#ifndef ERASURE_USE_ALLOCA
+#	define stackalloc(size) malloc(size)
+#	define stackfree(ptr) free(ptr)
+#else
+#	if defined ALLOCA_IN_INTRIN_H
+#		include <intrin.h>
+#	elif defined ALLOCA_IN_ALLOCA_H
+#		include <alloca.h>
+#	elif defined ALLOCA_IN_STDLIB_H
+#		include <stdlib.h>
+#	else
+#		error "ERASURE_USE_ALLOCA is defined but alloca does not exist in any known header files."
+#	endif
+#
+#	define stackalloc(size) alloca(size)
+#	define stackfree(ptr)
+#endif

@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.7)
+cmake_minimum_required(VERSION 3.1)
 
 project(erasure-codes)
 
@@ -7,12 +7,7 @@ enable_testing()
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
 set(CMAKE_C_STANDARD 99)
-
-
-include(CheckSymbolExists)
-
-check_symbol_exists(alloca "intrin.h;stdlib.h" ALLOCA_EXISTS)
-check_symbol_exists(alloca "assert.h;stdlib.h" ALLOCA_EXISTS)
+set(CMAKE_CXX_STANDARD 11)
 
 add_subdirectory(gf-arithmetic)
 add_subdirectory(erasure-codes)

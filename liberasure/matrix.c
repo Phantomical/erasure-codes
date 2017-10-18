@@ -1,6 +1,7 @@
 
 #include "matrix.h"
 #include "symbols.h"
+#include "config.h"
 
 #include <stdlib.h>
 #include <string.h>

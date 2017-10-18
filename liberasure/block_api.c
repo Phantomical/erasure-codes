@@ -1,28 +1,16 @@
 
 #include "erasure.h"
 #include "erasure_encoder.h"
+#include "config.h"
 
 #include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
 
-#ifndef ERASURE_USE_ALLOCA
-#	define stackalloc(size) malloc(size)
-#	define stackfree(ptr) free(ptr)
-#else
-#	ifdef _MSC_VER
-#		include <intrin.h>
-#	else
-#		include <alloca.h>
-#	endif
-#
-#	define stackalloc(size) alloca(size)
-#	define stackfree(ptr)
-#endif
-
 typedef enum erasure_error_code error_code;
 
-bool all_nonnull(const uint8_t* const* array, size_t size)
+// Makes sure that all pointers within the array are non-null
+bool all_nonnull(const void* const* array, size_t size)
 {
 	if (!array)
 		return false;
